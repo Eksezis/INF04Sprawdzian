@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
+import './app.css'
 
 function App() {
   const [Lista, setLista] = useState(["", "Komedia", "Obyczajowy", "Sensacyjny", "Horror"])
@@ -8,7 +9,8 @@ function App() {
 
 
   const onSubmit = (e) => {
-    console.log("tytul: " + Tytul + ";" + "rodzaj: " + Lista[Rodzaj])
+    e.preventDefault()
+    console.log("tytul: " + Tytul + ";" + " rodzaj: " + Lista[Rodzaj])
   }
 
   const changeTytul = (e) => {
@@ -23,12 +25,12 @@ function App() {
     <>
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label>Tytuł filmu</label>
+          <label htmlFor="poleWprowadzeniaTytułu">Tytuł filmu</label>
           <input className="form-control" type="text" onChange={changeTytul}/>
-          <label>Rodzaj</label>
+          <label htmlFor="poleWybraniuRodzaju">Rodzaj</label>
           <select className="form-control" onChange={changeRodzaj}>
             {Lista.map((element, id)=>
-              <option value={Lista.indexOf} key={id}>{element}</option>
+              <option value={Lista.indexOf(element)} key={id}>{element}</option>
             )}
           </select>
           <button type="submit" className="btn btn-primary">Dodaj</button>
