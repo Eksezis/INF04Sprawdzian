@@ -32,6 +32,10 @@ function App() {
     if (e.target.checked) { setSamochodyChecked(true) }
     else { setSamochodyChecked(false) }
   }
+  const pobranie = (e) => {
+    setZdjecia(Zdjecia)
+  }
+
 
   return (
     <>
@@ -48,25 +52,32 @@ function App() {
         <input className="form-check-input" type="checkbox" defaultChecked="true" id="samochodyCheckbox" onChange={changeCheckSamochody}/>
         <label className="form-check-label" htmlFor=" ctrId3">Samochody</label>
       </div>  
-      <div>
-        {Zdjecia.map((zdjecie, id) => {
+      <div style={{display: "flex", flexDirection: "row", flexWrap: "wrap"}}>
+        {Zdjecia.map((zdjecie) => {
           if (KwiatyChecked && zdjecie.category == 1) {return(
-            <>
-              <img className='zdjecia' key={id} src={'../public/assets/'+zdjecie.filename}/>
-              <label>Pobrań: {zdjecie.downloads}</label>
-            </>
+            <div key={zdjecie.id}>
+              <img className='zdjecia' src={'../assets/'+zdjecie.filename}/>
+              <h3>Pobrań: {zdjecie.downloads}</h3>
+              <button type="button" className="btn btn-success" onClick={pobranie} value={zdjecie.id}>Pobierz</button>
+            </div>
           )}
+        })}
+        {Zdjecia.map((zdjecie) => {
           if (ZwierzetaChecked && zdjecie.category == 2) {return(
-            <>
-              <img className='zdjecia' key={id} src={'../public/assets/'+zdjecie.filename}/>
-              <label>Pobrań: {zdjecie.downloads}</label>
-            </>
+            <div key={zdjecie.id}>
+              <img className='zdjecia' key={zdjecie.id} src={'../assets/'+zdjecie.filename}/>
+              <h3>Pobrań: {zdjecie.downloads}</h3>
+              <button type="button" className="btn btn-success" onClick={pobranie} value={zdjecie.id}>Pobierz</button>
+            </div>
           )}
+        })}
+        {Zdjecia.map((zdjecie) => {
           if (SamochodyChecked && zdjecie.category == 3) {return(
-            <>
-              <img className='zdjecia' key={id} src={'../public/assets/'+zdjecie.filename}/>
-              <label>Pobrań: {zdjecie.downloads}</label>
-            </>
+            <div key={zdjecie.id}>
+              <img className='zdjecia' key={zdjecie.id} src={'../assets/'+zdjecie.filename}/>
+              <h3>Pobrań: {zdjecie.downloads}</h3>
+              <button type="button" className="btn btn-success" onClick={pobranie} value={zdjecie.id}>Pobierz</button>
+            </div>
           )}
         })}
       </div>
