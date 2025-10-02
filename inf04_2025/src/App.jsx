@@ -32,8 +32,10 @@ function App() {
     if (e.target.checked) { setSamochodyChecked(true) }
     else { setSamochodyChecked(false) }
   }
-  const pobranie = (e) => {
-    setZdjecia(Zdjecia)
+  const pobranie = (identifier) => {
+    setZdjecia(Zdjecia.map(zdjecie => 
+      zdjecie.id === identifier ? {...zdjecie, downloads: zdjecie.downloads + 1} : zdjecie
+    ))  
   }
 
 
@@ -58,7 +60,7 @@ function App() {
             <div key={zdjecie.id}>
               <img className='zdjecia' src={'../assets/'+zdjecie.filename}/>
               <h3>Pobrań: {zdjecie.downloads}</h3>
-              <button type="button" className="btn btn-success" onClick={pobranie} value={zdjecie.id}>Pobierz</button>
+              <button type="button" className="btn btn-success" onClick={() => pobranie(zdjecie.id)}>Pobierz</button>
             </div>
           )}
         })}
@@ -67,7 +69,7 @@ function App() {
             <div key={zdjecie.id}>
               <img className='zdjecia' key={zdjecie.id} src={'../assets/'+zdjecie.filename}/>
               <h3>Pobrań: {zdjecie.downloads}</h3>
-              <button type="button" className="btn btn-success" onClick={pobranie} value={zdjecie.id}>Pobierz</button>
+              <button type="button" className="btn btn-success" onClick={() => pobranie(zdjecie.id)}>Pobierz</button>
             </div>
           )}
         })}
@@ -76,7 +78,7 @@ function App() {
             <div key={zdjecie.id}>
               <img className='zdjecia' key={zdjecie.id} src={'../assets/'+zdjecie.filename}/>
               <h3>Pobrań: {zdjecie.downloads}</h3>
-              <button type="button" className="btn btn-success" onClick={pobranie} value={zdjecie.id}>Pobierz</button>
+              <button type="button" className="btn btn-success" onClick={() => pobranie(zdjecie.id)}>Pobierz</button>
             </div>
           )}
         })}
